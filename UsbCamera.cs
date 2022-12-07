@@ -120,7 +120,9 @@ namespace GitHub.secile.Video
         {
             var filter = DirectShow.CreateFilter(DirectShow.DsGuid.CLSID_VideoInputDeviceCategory, cameraIndex);
             var pin = DirectShow.FindPin(filter, 0, DirectShow.PIN_DIRECTION.PINDIR_OUTPUT);
-            return GetVideoOutputFormat(pin);
+            var fs =  GetVideoOutputFormat(pin);
+            filter.Stop();
+            return fs;            
         }
 
         /// <summary>
